@@ -1,4 +1,5 @@
 import Link from 'next/link';
+
 import '../../styles/main.scss';
 
 export default class Header extends React.Component {
@@ -17,8 +18,8 @@ export default class Header extends React.Component {
       <Link href="/cv">
         <a>cv</a>
       </Link>
-      <Link href="/blogs">
-        <a>Blogs</a>
+      <Link href="/blog">
+        <a>Blog</a>
       </Link>
     </React.Fragment>
     )

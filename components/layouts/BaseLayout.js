@@ -1,11 +1,13 @@
 import Header from '../shared/Header';
 
-const BaseLayout = ({ children }) => {
+const BaseLayout = ({ children, className }) => {
   return (
-    <React.Fragment>
+    <div className="layout-container">
       <Header />
-      {children}
-    </React.Fragment>
+      <main className={className}>
+        <div className="wrapper">{children}</div>
+      </main>
+    </div>
   );
 };
 

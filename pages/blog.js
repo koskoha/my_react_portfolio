@@ -1,5 +1,6 @@
 import axios from 'axios';
-import Link from 'next/link';
+// import Link from 'next/link';
+import { Link } from '../routes';
 
 import BaseLayout from '../components/layouts/BaseLayout';
 
@@ -18,8 +19,8 @@ export default class Blogs extends React.Component {
     return (
       <ul>
         {posts.map(post => (
-          <li>
-            <Link as={`/post/${post.id}`} href={`/post?id=${post.id}`}>
+          <li key={post.id}>
+            <Link as={`/post/${post.id}`} route={`/post/${post.id}`}>
               <a style={{ fontSize: '20px' }}>{post.title}</a>
             </Link>
           </li>
