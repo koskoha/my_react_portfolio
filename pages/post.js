@@ -1,6 +1,7 @@
 import { withRouter } from 'next/router';
 import BaseLayout from '../components/layouts/BaseLayout';
 import Axios from 'axios';
+import BasePage from '../components/BasePage';
 
 class Post extends React.Component {
   static async getInitialProps({ query }) {
@@ -18,9 +19,11 @@ class Post extends React.Component {
   render() {
     const { post } = this.props;
     return (
-      <BaseLayout>
-        <h2>{post.title}</h2>
-        <p>{post.body}</p>
+      <BaseLayout {...this.props.auth}>
+        <BasePage>
+          <h2>{post.title}</h2>
+          <p>{post.body}</p>
+        </BasePage>
       </BaseLayout>
     );
   }

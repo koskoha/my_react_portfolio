@@ -4,9 +4,13 @@ import { Container, Row, Col } from 'reactstrap';
 import Typed from 'react-typed';
 
 export default class Blogs extends React.Component {
+  roles = ['Developer', 'Tech Lover', 'Team Player'];
+
   render() {
+    const { isAuthenticated, user } = this.props.auth;
+    
     return (
-      <BaseLayout className="cover">
+      <BaseLayout className="cover" {...this.props.auth}>
         <div className="main-section">
           <div className="background-image">
             <img src="/static/images/background-index.png" />
@@ -38,6 +42,7 @@ export default class Blogs extends React.Component {
               <Col md="6" className="hero-welcome-wrapper">
                 <div className="hero-welcome-text">
                   <h1>
+                    { isAuthenticated && <span><b>{user.name}</b> </span>}
                     Welcome to the portfolio website of Filip Jerga. Get
                     informed, collaborate and discover projects I was working on
                     through the years!
@@ -45,17 +50,14 @@ export default class Blogs extends React.Component {
                 </div>
                 <Typed
                   loop
-                  typeSpeed={100}
-                  backSpeed={50}
-                  strings={['Testing', 'More testing']}
-                  smartBackspace
-                  shuffle={false}
-                  backDelay={1}
-                  fadeOut={false}
-                  fadeOutDelay={100}
+                  typeSpeed={60}
+                  backSpeed={60}
+                  strings={this.roles}
+                  backDelay={1000}
                   loopCount={0}
                   showCursor
                   cursorChar="|"
+                  className="self-typed"
                 />
                 <div className="hero-welcome-bio">
                   <h1>Let's take a look on my work.</h1>

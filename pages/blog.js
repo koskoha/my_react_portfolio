@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link } from '../routes';
 
 import BaseLayout from '../components/layouts/BaseLayout';
+import BasePage from '../components/BasePage';
 
 export default class Blogs extends React.Component {
   static async getInitialProps() {
@@ -31,6 +32,10 @@ export default class Blogs extends React.Component {
 
   render() {
     const { posts } = this.props;
-    return <BaseLayout>{this.renderPosts(posts)}</BaseLayout>;
+    return (
+      <BaseLayout {...this.props.auth}>
+        <BasePage>{this.renderPosts(posts)}</BasePage>
+      </BaseLayout>
+    );
   }
 }
