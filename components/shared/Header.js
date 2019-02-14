@@ -55,12 +55,12 @@ export default class Header extends React.Component {
     });
   }
   render() {
-    const { isAuthenticated } = this.props;
+    const { isAuthenticated, className } = this.props;
 
     return (
       <div>
         <Navbar
-          className="port-navbar port-default absolute"
+          className={`port-navbar port-nav-base absolute ${className}`}
           color="transparent"
           dark
           expand="md"
@@ -78,7 +78,7 @@ export default class Header extends React.Component {
                 <BsNavLink route="/about" title="About" />
               </NavItem>
               <NavItem className="port-navbar-item">
-                <BsNavLink route="/portfolio" title="Portfolio" />
+                <BsNavLink route="/portfolios" title="Portfolio" />
               </NavItem>
               <NavItem className="port-navbar-item">
                 <BsNavLink route="/blog" title="Blog" />
