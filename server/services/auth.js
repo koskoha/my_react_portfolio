@@ -21,7 +21,7 @@ exports.checkRole = role => (
   (req, res, next) => {
     const user = req.user;
 
-    if (user && (user[process.env.NAMESPACE + '/role'] === role)) {
+    if (user && user[NAMESPACE + '/role'] && (user[NAMESPACE + '/role'] === role)) {
       next();
     } else {
       return res.status(401).send({ title: "Not Authorize", description: "You are not authorized" })
