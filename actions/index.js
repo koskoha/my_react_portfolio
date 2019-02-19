@@ -3,13 +3,12 @@ import cookies from 'js-cookie';
 import { getCookieFromReq } from '../helpers/utils';
 
 const axiosInstance = axios.create({
-  baseURL: 'http://localhost:3000/api',
+  baseURL: `${process.env.BASE_URL}/api`,
   timeout: 10000
 })
 
 const setAuthHeader = (req) => {
   const token = req ? getCookieFromReq(req, 'jwt') : cookies.getJSON('jwt');
-  console.log('token', token);
   if (token) {
     return { headers: { 'authorization': `Bearer ${token}` } }
   }
@@ -25,11 +24,6 @@ const rejectPromise = (resError) => {
     error = resError;
   }
   return Promise.reject(error);
-}
-
-export const getSecretData = async (req) => {
-  const url = 'http://localhost:3000/api/secret';
-  return await axios.get(url, setAuthHeader(req)).then(res => res.data);
 }
 
 export const getPortfolios = async () => {
@@ -57,3 +51,40 @@ export const deletePortfolio = (portfolioId) => {
     .then(res => (res.data))
     .catch(error => rejectPromise(error))
 }
+
+// ------------ BLOG ACTIONS --------------
+
+export const getBlogs = async (req) => {
+  return await axiosInstance.get('/blogs').then(response => response.data);
+}
+
+export const getBlogBySlug = async (slug) => {
+  return await axiosInstance.get(`/blogs/s/${slug}`).then(response => response.data);
+}
+
+export const getUserBlogs = async (req) => {
+  return await axiosInstance.get('/blogs/me', setAuthHeader(req)).then(response => response.data);
+}
+
+export const createBlog = (blogData, lockId) => {
+  return axiosInstance.post(`/blogs?lockId=${lockId}`, blogData, setAuthHeader())
+          .then(response => response.data)
+          .catch(err => rejectPromise(err))
+}
+
+export const updateBlog = (blogData, blogId) => {
+  return axiosInstance.patch(`/blogs/${blogId}`, blogData, setAuthHeader())
+          .then(response => response.data)
+          .catch(err => rejectPromise(err))
+}
+
+export const getBlogById = (blogId) => {
+  return axiosInstance.get(`/blogs/${blogId}`).then(response => response.data);
+}
+
+export const deleteBlog = (blogId) => {
+  return axiosInstance.delete(`/blogs/${blogId}`, setAuthHeader())
+          .then(response => response.data)
+          .catch(err => rejectPromise(err));
+}
+

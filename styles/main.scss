@@ -1,17 +1,26 @@
-@import './shared/fonts';
 @import './shared/colors';
+@import './shared/mixins';
+
 // PAGES
 @import './index';
-@import './portfolio';
+@import './portfolios';
 @import './blogs';
+@import './about';
+@import './cv';
+
 // COMPONENTS
 @import './header';
+@import './slate-editor';
 
 html,
 body {
   height: 100%;
   width: 100%;
   font-family: 'Montserrat', 'Helvetica';
+}
+
+.clickable {
+  cursor: pointer;
 }
 
 .self-typed {
@@ -26,12 +35,8 @@ body {
 }
 
 .error {
-  font-weight: 600;
+  font-weight: 700;
   color: red;
-}
-
-.clickable {
-  cursor: pointer;
 }
 
 .base-page {

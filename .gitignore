@@ -61,4 +61,4 @@ typings/
 .next
 
 /server/config/dev.js
-/server/config/prod.js
+/server/.next

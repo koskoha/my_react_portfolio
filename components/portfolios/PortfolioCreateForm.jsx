@@ -1,4 +1,3 @@
-// Render Prop
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import PortInput from '../form/PortInput';
@@ -6,7 +5,7 @@ import PortDate from '../form/PortDate';
 import moment from 'moment';
 import { Button, Alert } from 'reactstrap';
 
-const validateInputs = (values) => {
+const validateInputs = values => {
   let errors = {};
 
   Object.entries(values).forEach(([key, value]) => {
@@ -23,7 +22,7 @@ const validateInputs = (values) => {
   }
 
   return errors;
-}
+};
 
 const PortfolioCreateForm = ({ initialValues, onSubmit, error }) => (
   <div>
@@ -35,18 +34,50 @@ const PortfolioCreateForm = ({ initialValues, onSubmit, error }) => (
       {({ isSubmitting }) => (
         <Form>
           <Field label="Title" type="text" name="title" component={PortInput} />
-          <Field label="Company" type="text" name="company" component={PortInput} />
-          <Field label="Location" type="text" name="location" component={PortInput} />
-          <Field label="Position" type="text" name="position" component={PortInput} />
-          <Field label="Description" type="textarea" name="description" component={PortInput} />
-          <Field label="Start Date" initialDate={initialValues.startDate} name="startDate" component={PortDate} />
-          <Field label="End Date" initialDate={initialValues.endDate} canBeDisabled={true} name="endDate" component={PortDate} />
-          {
-            error && <Alert color="danger">
-              {error}
-            </Alert>
-          }
-          <Button color="success" size="lg" type="submit" disabled={isSubmitting}>
+          <Field
+            label="Company"
+            type="text"
+            name="company"
+            component={PortInput}
+          />
+          <Field
+            label="Location"
+            type="text"
+            name="location"
+            component={PortInput}
+          />
+          <Field
+            label="Position"
+            type="text"
+            name="position"
+            component={PortInput}
+          />
+          <Field
+            label="Description"
+            type="textarea"
+            name="description"
+            component={PortInput}
+          />
+          <Field
+            label="Start Date"
+            initialDate={initialValues.startDate}
+            name="startDate"
+            component={PortDate}
+          />
+          <Field
+            label="End Date"
+            initialDate={initialValues.endDate}
+            canBeDisabled={true}
+            name="endDate"
+            component={PortDate}
+          />
+          {error && <Alert color="danger">{error}</Alert>}
+          <Button
+            color="success"
+            size="lg"
+            type="submit"
+            disabled={isSubmitting}
+          >
             Create
           </Button>
         </Form>
@@ -56,17 +87,6 @@ const PortfolioCreateForm = ({ initialValues, onSubmit, error }) => (
 );
 
 export default PortfolioCreateForm;
-
-
-
-
-
-
-
-
-
-
-
 
 // export default class PortfolioCreateForm extends React.Component {
 
